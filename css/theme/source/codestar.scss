@@ -39,6 +39,19 @@ $heading2Size: 1.6em;
 $heading3Size: 1.3em;
 $heading4Size: 1.0em;
 
+/*
+.reveal code {
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+  font-family: "Fira Code", monospace;
+  font-size: 0.75em;
+  font-feature-settings: "calt" 1;
+  font-variant-ligatures: contextual; 
+}
+*/
+$codeFont: 'Fira Code', monospace;
+
 // Change text colors against light slide backgrounds
 @include light-bg-text-color(#222);
 
