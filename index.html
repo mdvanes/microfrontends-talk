@@ -4,11 +4,11 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Micro Frontends</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="dist/theme/codestar.css">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
@@ -16,8 +16,580 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section data-markdown data-background-image="snorlax.jpg">
+					<!-- source: https://www.wallpapermaiden.com/wallpaper/41927/snorlax-pokemon-lazy-sleeping-forest-cute/download/3840x2160 -->
+					<textarea data-template data-line-numbers>
+					  Note:
+		  
+					  * GraphQL and it's ecosystem can seem daunting, but it doesn't have to be!
+					  * Make a fullstack app in half an hour
+					</textarea>
+				  </section>
+		  
+				  <section
+					data-background-image="assets/shot-by-cerqueira-0o_GEzyargo-unsplash.jpg"
+				  >
+					<img src="assets/codestar_logo_dark_tagline.svg" width="40%" />
+					<br />
+					<br />
+					<div>
+					  <img
+						style="display: inline-block; vertical-align: top; margin: 5px 0"
+						src="assets/github.svg"
+						width="5%"
+					  />
+					  <div style="display: inline-block; vertical-align: top">
+						github.com/mdvanes
+					  </div>
+					</div>
+				  </section>
+		  
+				  <!-- <section data-background-color="rgb(0,26,54,1)"> -->
+				  <section>
+					<div
+					  style="display: flex; justify-content: center; align-items: center"
+					>
+					  <img style="" src="GraphQL_Logo.svg" width="25%" />
+					  <div style="font-size: 5rem; margin: 0 6rem">vs</div>
+					  <div style="font-size: 8rem">REST</div>
+					</div>
+					<aside class="notes">
+					  <p>GraphQL vs REST</p>
+					  <ul>
+						<li>Note: only minimum required knowledge</li>
+						<li>Is: query language for APIs + runtime</li>
+					  </ul>
+					</aside>
+				  </section>
+		  
+				  <section data-markdown>
+					<textarea data-template data-line-numbers>
+		  ```graphql
+		  # Compare /api/book vs:
+		  query {
+			book {
+			  title
+			}}
+		  
+		  # Compare /api/book/:id vs:
+		  query(id: ID!) {
+			book(id: $id) {
+			  title
+			  ISBN
+			  author
+			}}
+		  ```
+		  
+		  Note:
+		  
+		  * Why 1: selective responses: fast and scalable</li>
+			* Same endpoint
+			* "Ask for what you want" (scalable)
+			* Leave out what you don't need (fast)
+		  * Why 2: Type system (explained later)</li>
+					</textarea>
+				  </section>
+		  
+				  <section data-markdown>
+					<textarea data-template data-line-numbers>
+		  Schemas
+		  
+		  ```xml
+		  <?xml version="1.0"?>
+		  <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:element name="note">
+			  <xs:complexType>
+				<xs:sequence>
+				  <xs:element name="to" type="xs:string"/>
+				</xs:sequence>
+			  </xs:complexType>
+			</xs:element>
+		  </xs:schema>
+		  
+		  <!-- validates: <note><to>self</to></note> -->
+		  ```
+		  
+		  Note:
+		  
+		  Schemas
+		  
+		  * validate data
+		  * schemas are at the core of:
+			  * type safety
+			  * code generation
+		  * XML schema's (XSD)
+		  * JSON validation: ajv, json-schema.org, json-ld (linked data)
+		  * GraphQL schemas: 
+			  * a form of JSON validation, request and reponse
+			  * both front-end (Query) and back-end (DGraph)
+					</textarea>
+				  </section>
+		  
+				  <section data-markdown>
+					<textarea data-template data-line-numbers>
+		  Dgraph
+		  
+		  ```bash []
+		  docker run --rm -it \
+			  -p 8080:8080 \
+			  -p 8001:8000 \
+			  dgraph/standalone:v20.11.0
+		  ```
+		  
+		  Note:
+		  
+		  * dgraph.io
+		  * graph database and graphql runtime
+		  * standalone mode
+		  
+		  Optional: export 9080 port for alpha node https://dgraph.io/docs/get-started/#dgraph
+					</textarea>
+				  </section>
+		  
+				  <section
+					data-markdown
+					data-background-image="ratel1.png"
+					data-background-size="contain"
+				  >
+					<textarea data-template data-line-numbers>
+					  Note:
+		  
+					  Ratel
+		  
+					  * Schema
+					  * http://localhost:8001/?latest
+					  * Note port numbers
+					</textarea>
+				  </section>
+		  
+				  <section data-markdown>
+					<textarea data-template data-line-numbers>
+		  DGraph Schema
+		  
+		  ```graphql [1-6|7-12]
+		  type Trainer {
+			trainerID: String! @id
+			name: String @search(by: [term])
+			battles: [Trainer] @hasInverse(field: battles)
+			trains: [Monster]
+		  }
+		  
+		  type Monster {
+			monsterID: String! @id
+			name: String @search(by: [term])
+			trainedBy: [Trainer] @hasInverse(field: trains)
+		  }
+		  ```
+		  
+		  Note:
+		  
+		  * explain types
+		  * explain hasInverse
+					  </textarea
+					>
+				  </section>
+		  
+				  <section data-markdown>
+					<textarea data-template data-line-numbers>
+		  ```bash
+		  curl -X POST localhost:8080/admin/schema \
+			  --data-binary '@dgraph_schema.graphql'
+		  ```
+					  </textarea
+					>
+				  </section>
+		  
+				  <section
+					data-markdown
+					data-background-image="ratel2.png"
+					data-background-size="contain"
+				  >
+					<textarea data-template data-line-numbers>
+					  Note:
+		  
+					  The new fields are in the schema
+					</textarea>
+				  </section>
+		  
+				  <section
+					data-markdown
+					data-background-image="altair1.png"
+					data-background-size="contain"
+				  >
+					<textarea data-template data-line-numbers>
+					  Note:
+		  
+					  Altair, add first data
+		  
+					  * Altair web: https://altair-gql.sirmuel.design/
+					  * Altair also as browser plugin and standalone
+					  * Alternative: GraphiQL
+					  * Alternative: using GraphQL directly with cURL
+					  * Show docs
+					  * Explain where "addTrainer" comes from
+					</textarea>
+				  </section>
+		  
+				  <section data-markdown>
+					<textarea data-template data-line-numbers>
+					  ```graphql []
+					  mutation {
+						addTrainer(
+						  input: [
+							{ trainerID: "gary", name: "Gary", 
+							battles: [{ trainerID: "ash" }] }
+						  ]
+						) {
+						  trainer {
+							trainerID
+							name
+							battles {
+							  trainerID
+							}
+						  }}}
+					  ```
+		  
+					  Note:
+		  
+					  Add another trainer
+					  </textarea
+					>
+				  </section>
+		  
+				  <section data-markdown>
+					<textarea data-template data-line-numbers>
+					  ```graphql []
+					  mutation {
+						addMonster(
+						  input: [
+							{ monsterID: "pikachu", name: "Pikachu", 
+							trainedBy: [{ trainerID: "ash" }] }
+						  ]
+						) {
+						  monster {
+							monsterID
+							name
+							trainedBy {
+							  trainerID
+							}
+						  }}}
+					  ```
+		  
+					  Note:
+		  
+					  Add a monster that is connected to the first trainer
+					  </textarea>
+				  </section>
+		  
+				  <section data-markdown>
+					<textarea data-template data-line-numbers>
+					  ```graphql []
+					  mutation {
+						addMonster(
+						  input: [
+							{ monsterID: "squirtle", name: "Squirtle", 
+							trainedBy: [{ trainerID: "gary" }] }
+						  ]
+						) {
+						  monster {
+							monsterID
+							name
+							trainedBy {
+							  trainerID
+							}
+						  }}}
+					  ```
+		  
+					  Note:
+		  
+					  Add a monster that is connected to the second trainer
+					  </textarea>
+				  </section>
+		  
+				  <section
+					data-markdown
+					data-background-image="ratel3.png"
+					data-background-size="contain"
+				  >
+					<textarea data-template data-line-numbers>
+					  Note:
+		  
+					  DQL vs GraphQL
+		  
+					  * Show Ratel
+					  * Alternative to GraphQL syntax is DQL
+					  * reverse edges and recursion depth
+					  * Graph visualisation
+					</textarea>
+				  </section>
+		  
+				  <section>
+					<p class="fragment fade-out">Breathe...</p>
+		  
+					<ul>
+					  <li class="fragment">GraphQL endpoint</li>
+					  <li class="fragment">Queries & mutations</li>
+					  <li class="fragment">A data store</li>
+					  <li class="fragment">Some data</li>
+					</ul>
+		  
+					<aside class="notes">
+					  <p>Recap after DGraph</p>
+					  <ul>
+						<li>No messing with resolvers</li>
+						<li>Fully functioning back-end</li>
+						<li>
+						  Now we make a front-end to query the back-end and visualize the
+						  data
+						</li>
+					  </ul>
+					</aside>
+				  </section>
+		  
+				  <section data-markdown>
+					<textarea data-template data-line-numbers>
+		  ```bash []
+		  =>
+		  yarn create react-app pallet-town --template typescript
+		  cd pallet-town
+		  yarn start
+		  # visit http://localhost:3000
+		  ```
+					  </textarea
+					>
+				  </section>
+		  
+				  <section data-markdown>
+					<textarea data-template data-line-numbers>
+		  ```bash []
+		  yarn add graphql-request graphql graphql.macro && \
+		  yarn add -D @graphql-codegen/cli \
+		   @graphql-codegen/introspection \
+		   @graphql-codegen/typescript \
+		   @graphql-codegen/typescript-graphql-request \
+		   @graphql-codegen/typescript-operations
+		  ```
+		  
+		  Note:
+		  
+		  Dependencies
+		  
+		  * Apollo vs GraphQL-request
+			  * Apollo is a Swiss Army Knife
+			  * Opinionated and custom syntax
+			  * GraphQL-request is just a tiny wrapper around the Fetch API
+			  * Easier for demo purposes
+			  * Also used to integrate (simple) GraphQL requests in an existing stack, e.g. Redux
+		  * GraphQL Codegen
+			  * We will use this to generate an API to query the back-end
+			  * Also plugins for Apollo available
+					  </textarea
+					>
+				  </section>
+		  
+				  <section data-markdown data-background-color="rgb(0,26,54,1)">
+					<textarea data-template data-line-numbers>
+					  ```graphql []
+					  # src/graphql/getTrainerByName.graphql
+					  query getTrainerByName ($name: String!) {
+						queryTrainer(filter: { name: { allofterms: $name } }) {
+						  name
+						  trains {
+							name
+						  }
+						  battles {
+							name
+						  }
+						}
+					  }
+					  ```
+		  
+					  Note:
+		  
+					  Front-end Query
+		  
+					  * GraphQL query (not a mutation)
+					  * queryTrainer generated by DGraph
+					  * filter/allofterms generated by DGraph (`@search(by: [term]`) in schema)
+					  * not anonymous, required for codegen
+					  * explain `$name` variable
+					</textarea>
+				  </section>
+		  
+				  <section data-markdown data-background-color="rgb(0,26,54,1)">
+					<textarea data-template data-line-numbers>
+					  ```yml [2-4|6-12|13-15]
+					  # codegen.yml
+					  overwrite: true
+					  schema: "http://localhost:8080/graphql"
+					  documents: "src/**/*.graphql"
+					  generates:
+						src/generated/graphql.ts:
+						  plugins:
+							- "typescript"
+							- "typescript-operations"   
+							- "typescript-graphql-request"
+						  config:
+							gqlImport: graphql.macro#gql
+						./schema.graphql.json:
+						  plugins:
+							- "introspection"                  
+					  ```
+					</textarea>
+				  </section>
+		  
+				  <section data-markdown data-background-color="rgb(0,26,54,1)">
+					<textarea data-template data-line-numbers>
+					  ```sh []
+					  yarn graphql-codegen   
+					  ```
+		  
+					  results:
+		  
+					  ```sh []
+					  src/generated/graphql.ts
+					  schema.graphql.json
+					  ```
+		  
+					  Note:
+		  
+					  * schema.graphql.json was created
+					  * src/generated/graphql.ts also holds all the generated types
+					  * Use GraphQL fragments to group types together, e.g. TrainerFields
+					  * Add src/generated/graphql.ts to eslint ignore
+					  * The order of code in graphql.ts depends on the order of the schema. Since that is not stable, you can use sort-graphql-schema
+					</textarea>
+				  </section>
+		  
+				  <section data-markdown data-background-color="rgb(0,26,54,1)">
+					<textarea data-template data-line-numbers>
+					  ```ts []
+					  // src/generated/graphql.ts
+					  ...
+					  export function getSdk(
+						client: GraphQLClient, 
+						withWrapper: SdkFunctionWrapper = defaultWrapper) {
+						return {
+						  getTrainerByName(variables: GetTrainerByNameQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetTrainerByNameQuery> {
+							return withWrapper(() => client.request<GetTrainerByNameQuery>(GetTrainerByNameDocument, variables, requestHeaders));
+						  }
+						};
+					  }
+					  ...
+					  ```
+					</textarea>
+				  </section>
+		  
+				  <section data-markdown data-background-color="rgb(0,26,54,1)">
+					<textarea data-template data-line-numbers>
+					  ```json []
+					  # graphql.config.json
+					  {
+						"schema": "schema.graphql.json",
+						"documents": "src/**/*.graphql"
+					  }         
+					  ```
+		  
+					  Note:
+		  
+					  * With an IDE plugin, code completion in .graphql files
+					  * Also .ts(x) support
+					  * Have to update schema.graphql.json, usually with npm scripts
+					</textarea>
+				  </section>
+		  
+				  <section
+					data-markdown
+					data-background-image="AppTsx1.png"
+					data-background-size="contain"
+				  >
+					<textarea data-template data-line-numbers>
+					  Note:
+		  
+					  Use getSdk
+					</textarea>
+				  </section>
+		  
+				  <section
+					data-markdown
+					data-background-image="AppTsx2.png"
+					data-background-size="contain"
+				  >
+					<textarea data-template data-line-numbers>
+					  Note:
+		  
+					  Response is typed!
+					</textarea>
+				  </section>
+		  
+				  <section data-markdown data-background-color="rgb(0,26,54,1)">
+					<textarea data-template data-line-numbers>
+					  ```json []
+					  {
+						"name": "Ash",
+						"trains": [{
+						  "name": "Pikachu"
+						}],
+						"battles": [{
+						  "name": "Gary"
+						}]
+					  }
+					  ```
+		  
+					  Note:
+		  
+					  Output result
+					</textarea>
+				  </section>
+		  
+				  <section
+					data-markdown
+					data-background-image="AppTsx3.png"
+					data-background-size="contain"
+				  >
+					<textarea data-template data-line-numbers>
+					  Note:
+		  
+					  * Render the result
+					  * Null checks & Maybe
+					</textarea>
+				  </section>
+		  
+				  <section data-markdown data-background-color="rgb(0,26,54,1)">
+					<textarea data-template data-line-numbers>
+					  > Ash with Pikachu against Gary
+					</textarea>
+				  </section>
+		  
+				  <section
+					data-markdown
+					data-background-image="graph.png"
+					data-background-size="contain"
+				  >
+					<textarea data-template data-line-numbers>
+					  Note:
+		  
+					  * Example of visualisation
+					  * Graph is Chart, but not all Charts are Graphs
+					  * Apache Egraph, D3 (react-d3-graph), pricey commercial alternatives
+					  * See `App.example.tsx`
+					</textarea>
+				  </section>
+		  
+				  <section
+					data-markdown
+					data-background-image="big_graph.jpg"
+					data-background-size="contain"
+				  >
+					<textarea data-template data-line-numbers>
+					  ## https://github.com/mdvanes/7sgraph <!-- .element: class="fragment" -->
+		  
+					  Note:
+		  
+					  * See https://github.com/mdvanes/7sgraph
+					  * Optional: Can you generate back-end code with codegen if you don't want to use Dgraph? Yes, graphql-code-generator.com offers plugins for Java, Kotlin, and, .NET, but it varies per plugin how much is generated.
+					</textarea>
+				  </section>
 			</div>
 		</div>
 
