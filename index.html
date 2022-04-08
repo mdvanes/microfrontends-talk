@@ -63,14 +63,17 @@
             </div>
           </div>
         </section>
-        
+
         <section data-markdown>
           <textarea data-template data-line-numbers>
             Why Microfrontends?
           </textarea>
         </section>
 
-        <section data-markdown data-background-image="assets/page.svg"></section>
+        <section
+          data-markdown
+          data-background-image="assets/page.svg"
+        ></section>
 
         <section data-markdown>
           <textarea data-template data-line-numbers>
@@ -83,19 +86,19 @@
         </section>
 
         <section>
-          <div style="display: flex; justify-content: center">
+          <div style="display: flex; justify-content: center;">
             <iframe
               src="https://www.mdworld.nl"
-              style="width: 20vw; height: 60vh"
+              style="width: 40%; height: 40vh"
             ></iframe>
             <iframe
               src="https://code-star.github.io/events"
-              style="width: 30vw; height: 60vh"
+              style="width: 55%; height: 40vh"
             ></iframe>
           </div>
           <iframe
             src="https://github.com/code-star"
-            style="width: 50vw; height: 10vh"
+            style="width: 100%; height: 10vh"
           ></iframe>
           <aside class="notes">
             iframes:
@@ -108,7 +111,6 @@
             </ul>
           </aside>
         </section>
-        <!-- iframe: unsafe (clickjacking, frame-ancestors disabled), needs special code to cooperate (404) -->
 
         <section data-markdown>
           <textarea data-template data-line-numbers>
@@ -132,14 +134,21 @@
           <img src="assets/web-components.svg" />
         </section>
 
+        <!-- TODO NOTE: COMBINATIONS of MFEs! -->
         <section data-background-color="#fefefe">
           <img src="assets/hyperlinks-and-monolith.svg" />
         </section>
+
         <section data-background-color="#fefefe">
           <img src="assets/module-federation.svg" />
         </section>
 
-        <section data-background-color="#415a74">
+        <section data-background-color="#2f2f2f">
+          <img src="assets/component-library.png" />
+        </section>
+
+        <!-- <section data-background-color="#718aa4"></section> -->
+        <section>
           <h2>Monorepos</h2>
           <div style="display: flex; justify-content: center; gap: 4rem">
             <img src="assets/yarn-logo.svg" width="20%" />
@@ -147,8 +156,38 @@
             <img src="assets/nx-logo.svg" width="20%" />
           </div>
         </section>
+
+        <section>
+          <div style="display: flex; justify-content: center">
+            <iframe
+              src="https://code-star.github.io/nx-reference/iframe.html?id=appcomponent-v1-1-0--example&args=&globals=measureEnabled:false&viewMode=story#/portfolio"
+              style="width: 80vw; height: 50vh"
+            ></iframe>
+          </div>
+        </section>
+
+        <section>
+          <div style="display: flex; justify-content: center">
+            <iframe
+              src="https://code-star.github.io/nx-reference-portfolio/"
+              style="width: 80vw; height: 50vh"
+            ></iframe>
+          </div>
+        </section>
+
+        <section>
+          <div style="display: flex; justify-content: center">
+            <iframe
+              src="https://code-star.github.io/nx-reference-shell/"
+              style="width: 80vw; height: 50vh"
+            ></iframe>
+          </div>
+        </section>
+
       </div>
     </div>
+
+   
 
     <script src="dist/reveal.js"></script>
     <script src="plugin/notes/notes.js"></script>
