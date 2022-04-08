@@ -184,6 +184,71 @@
           </div>
         </section>
 
+        <!-- TODO module federation code example. 
+          Deduplication. Pin versions. 
+          Example of how to use the component 
+          MF with everything possible, but with Nx Ang is easiest
+        -->
+        <section data-markdown>
+          <textarea data-template data-line-numbers>
+            ```ts []
+            // apps/demo/webpack.config.js
+            const createPlugins = (mapping) => {
+                return [
+                    new ModuleFederationPlugin({
+                        remotes: {
+                            portfolio: `portfolio@${mapping["portfolio"]}/remoteEntry.js`,
+                        },
+                        shared: {
+                            "@angular/core": { singleton: true, strictVersion: true },
+                            "@angular/common": { singleton: true, strictVersion: true },
+                            "@angular/common/http": {
+                                singleton: true,
+                                strictVersion: true,
+                            },
+                            "@angular/router": { singleton: true, strictVersion: true },
+                            ...sharedMappings.getDescriptors(),
+                        },
+                    }),
+                    sharedMappings.getPlugin(),
+                ];
+            };
+            ...
+            plugins: webpackHelper.createPlugins({
+              portfolio: "http://localhost:4201/nx-reference-portfolio",
+            }),
+            ...
+            // apps/portfolio/webpack.config.js
+            output: {
+              uniqueName: "portfolio",
+              publicPath: "auto",
+            },
+            ...
+            plugins: [
+                new ModuleFederationPlugin({
+                    name: "portfolio",
+                    filename: "remoteEntry.js",
+                    exposes: {
+                        "./Module":
+                            "apps/portfolio/src/app/remote-entry/entry.module.ts",
+                    },
+                    shared: {
+                        "@angular/core": { singleton: true, strictVersion: true },
+                        "@angular/common": { singleton: true, strictVersion: true },
+                        "@angular/common/http": {
+                            singleton: true,
+                            strictVersion: true,
+                        },
+                        "@angular/router": { singleton: true, strictVersion: true },
+                        ...sharedMappings.getDescriptors(),
+                    },
+                }),
+                sharedMappings.getPlugin(),
+            ],
+            ```
+          </textarea>
+        </section>
+
       </div>
     </div>
 
