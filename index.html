@@ -348,7 +348,7 @@
               // apps/demo/webpack.config.js
               new ModuleFederationPlugin({
                   remotes: {
-                      portfolio: `portfolio@${mapping["portfolio"]}/remoteEntry.js`,
+                      portfolio: `portfolio@http://localhost:4201/remoteEntry.js`,
                   },
               }),
               ```
@@ -402,65 +402,29 @@
           <textarea data-template data-line-numbers>
             ```ts []
             // apps/demo/webpack.config.js
-            const createPlugins = (mapping) => {
-                return [
-                    new ModuleFederationPlugin({
-                        remotes: {
-                            portfolio: `portfolio@${mapping["portfolio"]}/remoteEntry.js`,
-                        },
-                        shared: {
-                            "@angular/core": { singleton: true, strictVersion: true },
-                            "@angular/common": { singleton: true, strictVersion: true },
-                            "@angular/common/http": {
-                                singleton: true,
-                                strictVersion: true,
-                            },
-                            "@angular/router": { singleton: true, strictVersion: true },
-                            ...sharedMappings.getDescriptors(),
-                        },
-                    }),
-                    sharedMappings.getPlugin(),
-                ];
-            };
+            const deps = require('./package.json').dependencies;
             ...
-            plugins: webpackHelper.createPlugins({
-              portfolio: "http://localhost:4201/nx-reference-portfolio",
-            }),
+            new ModuleFederationPlugin({
+              remotes: { ... },
+              shared: {
+                ...deps,
+                "@angular/core": { 
+                  singleton: true, 
+                  strictVersion: true },
             ...
-            // apps/portfolio/webpack.config.js
-            output: {
-              uniqueName: "portfolio",
-              publicPath: "auto",
-            },
-            ...
-            plugins: [
-                new ModuleFederationPlugin({
-                    name: "portfolio",
-                    filename: "remoteEntry.js",
-                    exposes: {
-                        "./Module":
-                            "apps/portfolio/src/app/remote-entry/entry.module.ts",
-                    },
-                    shared: {
-                        "@angular/core": { singleton: true, strictVersion: true },
-                        "@angular/common": { singleton: true, strictVersion: true },
-                        "@angular/common/http": {
-                            singleton: true,
-                            strictVersion: true,
-                        },
-                        "@angular/router": { singleton: true, strictVersion: true },
-                        ...sharedMappings.getDescriptors(),
-                    },
-                }),
-                sharedMappings.getPlugin(),
-            ],
             ```
+
+            Note:
+            - shared for deduplication
+            - spread from package.json (this way the shell versions are leading)
+            - singleton for libs with shared global state
+            - strictVersion: rejects version if not required version
           </textarea>
         </section>
 
         <section data-markdown>
           <textarea data-template data-line-numbers>
-              - https://mdworld.nl/micro-frontends-in-a-nutshell
+            - https://mdworld.nl/micro-frontends-in-a-nutshell
           </textarea>
         </section>
       </div>
