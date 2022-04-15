@@ -133,9 +133,16 @@
             - TODO How (deployment) monoliths?
             - TODO Component libraries / shared components -> micro Web Components -> Monorepos
             - TODO Dependencies (e.g. lodash in diagram) and deduplication
+              - with the shared prop
+              - can spread from (package.)json (see https://github.com/module-federation/module-federation-examples/blob/master/redux-reducer-injection/app2/webpack.config.js)
             - TODO Communication between MFEs. Navigation between. 
             - TODO App State Management (custom communication layer like in first course)
             - TODO https://github.com/module-federation/module-federation-examples
+              - In Angular with Router, in React with Lazy
+              - React in Vue https://github.com/module-federation/module-federation-examples/tree/master/react-in-vue
+              - MF adoption is improving. Support in CRA with CRACO https://github.com/module-federation/module-federation-examples/tree/master/cra
+              - Redux with injectReducer https://github.com/module-federation/module-federation-examples/tree/master/redux-reducer-injection
+              - Angular uses library from Manfred
           </textarea>
         </section>
 
@@ -173,7 +180,7 @@
           style="text-shadow: 0px 0px 2px black"
         >
           <textarea data-template data-line-numbers>
-         # WWMFD? <!-- .element: style="text-shadow: 4px 4px 0 black; font-size: 15rem" -->
+         # WWMSD? <!-- .element: style="text-shadow: 4px 4px 0 black; font-size: 15rem" -->
          (What Would Manfred Steyer Do?) <!-- .element: class="fragment" -->
       </textarea
           >
@@ -190,12 +197,23 @@
         <section data-markdown>
           <textarea data-template data-line-numbers>
           ![microapps flowchart v2](assets/microapps-flowchart-v2.svg)
+
+          Note:
+          - you don't want iframes
+          - instead of "Webpack 5?" you can also read "I want to deduplicate shared resources and to have easier navigation/state integration"
       </textarea
           >
         </section>
 
-        <section data-background-color="#2f2f2f">
-          <img src="assets/component-library.png" />
+        <section data-markdown data-background-color="#2f2f2f">
+          <textarea data-template data-line-numbers>
+          ![component library in Storybook](assets/component-library.png)
+
+          Note:
+          - Familiar with Component Libraries/Storybook?
+          - Make sense to improve reusability of components
+      </textarea
+          >
         </section>
 
         <!-- <section data-background-color="#718aa4"></section> -->
@@ -206,6 +224,16 @@
             <img src="assets/lerna-hero.svg" width="20%" />
             <img src="assets/nx-logo.svg" width="20%" />
           </div>
+          <aside class="notes">
+            <p>Why Monorepos?</p>
+
+            <ul>
+              <li>What is a monorepo</li>
+              <li>Can contain multiple FE/BE apps</li>
+              <li>DX: don't have to link component library</li>
+              <li>DX: less toolchain maintenance (lint/jest)</li>
+            </ul>
+          </aside>
         </section>
 
         <section data-markdown>
@@ -220,21 +248,140 @@
         </section>
 
         <section>
-          <div style="display: flex; justify-content: center">
-            <iframe
-              src="https://code-star.github.io/nx-reference/iframe.html?id=appcomponent-v1-1-0--example&args=&globals=measureEnabled:false&viewMode=story#/portfolio"
-              style="width: 80vw; height: 50vh"
-            ></iframe>
-          </div>
+          <section>
+            <div style="display: flex; justify-content: center">
+              <iframe
+                src="https://code-star.github.io/nx-reference-portfolio/"
+                style="width: 80vw; height: 50vh"
+              ></iframe>
+            </div>
+          </section>
+          <section data-markdown>
+            <textarea data-template data-line-numbers>
+              ![Portfolio as a separate app](assets/nx-portfolio.png)
+    
+              Note:
+    
+              - TODO Fallback for when site offline
+              - Show that previous slide is live by using button
+          </textarea
+            >
+          </section>
+          <section data-markdown>
+            <textarea data-template data-line-numbers>
+              ```ts []
+              // apps/portfolio/webpack.config.js
+              output: {
+                uniqueName: "portfolio",
+                publicPath: "auto",
+              },
+              ...
+              plugins: [
+                  new ModuleFederationPlugin({
+                      name: "portfolio",
+                      filename: "remoteEntry.js",
+                      exposes: {
+                          "./Module":
+                              "apps/portfolio/src/app/remote-entry/entry.module.ts",
+                      },
+                  }),
+              ],
+              ```
+
+              Note:
+              - note "name" and "exposes"
+              - publicPath is path used for assets
+              - 'auto' uses e.g. self.location
+          </textarea
+            >
+          </section>
+          <section data-markdown>
+            <textarea data-template data-line-numbers>
+              ```ts []
+              // apps/portfolio/src/app/remote-entry/entry.module.ts
+              @NgModule({
+                declarations: [RemoteEntryComponent],
+                imports: [
+                    BrowserModule,
+                    UiModule,
+                    RouterModule.forChild([
+                        {
+                            path: "",
+                            component: RemoteEntryComponent,
+                        },
+                    ]),
+                ],
+                providers: [],
+              })
+              ```
+
+              Note:
+              - Nothing special!
+          </textarea
+            >
+          </section>
         </section>
 
         <section>
-          <div style="display: flex; justify-content: center">
-            <iframe
-              src="https://code-star.github.io/nx-reference-portfolio/"
-              style="width: 80vw; height: 50vh"
-            ></iframe>
-          </div>
+          <section>
+            <div style="display: flex; justify-content: center">
+              <iframe
+                src="https://code-star.github.io/nx-reference/iframe.html?id=appcomponent-v1-1-0--example&args=&globals=measureEnabled:false&viewMode=story#/portfolio"
+                style="width: 80vw; height: 50vh"
+              ></iframe>
+            </div>
+          </section>
+          <section data-markdown>
+            <textarea data-template data-line-numbers>
+              ![Nx Reference app in Storybook mode](assets/nx-storybook.png)
+    
+              Note:
+    
+              - TODO Fallback for when site offline
+              - Show that previous slide is live by using button
+          </textarea
+            >
+          </section>
+          <section data-markdown>
+            <textarea data-template data-line-numbers>
+              ```ts []
+              // apps/demo/webpack.config.js
+              new ModuleFederationPlugin({
+                  remotes: {
+                      portfolio: `portfolio@${mapping["portfolio"]}/remoteEntry.js`,
+                  },
+              }),
+              ```
+
+              Note:
+              - This ("demo") is the shell app
+          </textarea
+            >
+          </section>
+          <section data-markdown>
+            <textarea data-template data-line-numbers>
+              ```ts []
+              // apps/demo/src/app/app.module.ts
+              @NgModule({
+                ...
+                imports: [
+                    ...
+                    RouterModule.forRoot([{
+                      path: "",
+                      loadChildren: () =>
+                        import("portfolio/Module").then(
+                          (m) => m.RemoteEntryModule),},],
+                ...
+              })
+              ```
+
+              Note:
+              - Lazy import()
+              - Router
+              - path can be used to only load on specic routes
+          </textarea
+            >
+          </section>
         </section>
 
         <section>
