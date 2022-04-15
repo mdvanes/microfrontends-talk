@@ -43,6 +43,7 @@
 * Who is (or has been) at a project with more than 10 devs? More than 50? More than 200?
 * Who is at a project that uses micro services? Why do they use it? (Later: ask to apply micro services to the front-end)
 * MFEs are not new
+* TODO Trinity/triangle: MFEs, MonoRepos, Component Libraries -> Nx
           </textarea>
         </section>
 
@@ -70,10 +71,14 @@
           </textarea>
         </section>
 
-        <section
-          data-markdown
-          data-background-image="assets/page.svg"
-        ></section>
+        <section data-background-image="assets/page.svg" data-markdown>
+          <textarea data-template data-line-numbers>
+            Note:
+            - How would you build this?
+            - What are weak points of this solution?
+        </textarea
+        >
+        </section>
 
         <section data-markdown>
           <textarea data-template data-line-numbers>
@@ -86,7 +91,7 @@
         </section>
 
         <section>
-          <div style="display: flex; justify-content: center;">
+          <div style="display: flex; justify-content: center">
             <iframe
               src="https://www.mdworld.nl"
               style="width: 40%; height: 40vh"
@@ -114,29 +119,41 @@
 
         <section data-markdown>
           <textarea data-template data-line-numbers>
-            * hyperlinks
-            * iframes
-            * deployment monolith
-            * Web Components
-            * Module Federation
+            - hyperlinks
+            - iframes
+            - deployment monolith
+            - Web Components
+            - Module Federation
 
             Note:
 
-            * TODO How (deployment) monoliths?
-            * TODO Component libraries / shared components -> micro Web Components -> Monorepos
-            * TODO Dependencies (e.g. lodash in diagram) and deduplication
-            * TODO Communication between MFEs. Navigation between. 
-            * TODO App State Management (custom communcation layer)
+            - TODO How (deployment) monoliths?
+            - TODO Component libraries / shared components -> micro Web Components -> Monorepos
+            - TODO Dependencies (e.g. lodash in diagram) and deduplication
+            - TODO Communication between MFEs. Navigation between. 
+            - TODO App State Management (custom communcation layer)
           </textarea>
         </section>
 
-        <section data-background-color="#fefefe">
-          <img src="assets/web-components.svg" />
+        <section data-background-color="#fefefe" data-markdown>
+          <textarea data-template data-line-numbers>
+            ![](assets/web-components.svg)
+            
+            Note:
+            - Micro vs Macro Web Components
+        </textarea
+        >
         </section>
 
-        <!-- TODO NOTE: COMBINATIONS of MFEs! -->
-        <section data-background-color="#fefefe">
+        <section data-background-color="#fefefe" data-markdown>
           <img src="assets/hyperlinks-and-monolith.svg" />
+          <textarea data-template data-line-numbers>
+            ![](assets/hyperlinks-and-monolith.svg)
+            
+            Note:
+            - MFE types can and will be combined!
+        </textarea
+        >
         </section>
 
         <section data-background-color="#fefefe">
@@ -249,10 +266,34 @@
           </textarea>
         </section>
 
+        <section
+          data-markdown
+          data-background-image="assets/manfred-steyer.jpg"
+          style="text-shadow: 0px 0px 2px black"
+        >
+          <textarea data-template data-line-numbers>
+           # WWMFD? <!-- .element: style="text-shadow: 4px 4px 0 black; font-size: 15rem" -->
+           (What Would Manfred Steyer Do?) <!-- .element: class="fragment" -->
+        </textarea
+          >
+        </section>
+
+        <section  data-markdown>
+          <textarea data-template data-line-numbers>
+            ![microapps flowchart v1](assets/microapps-flowchart-v1.png)
+            - https://www.angulararchitects.io/en/aktuelles/a-software-architects-approach-towards/
+        </textarea
+        >
+        </section>
+
+        <section data-markdown>
+          <textarea data-template data-line-numbers>
+              - https://mdworld.nl/micro-frontends-in-a-nutshell
+          </textarea
+          >
+        </section>
       </div>
     </div>
-
-   
 
     <script src="dist/reveal.js"></script>
     <script src="plugin/notes/notes.js"></script>
@@ -269,6 +310,7 @@
         // Disable controls bouncing animation
         controlsTutorial: false,
         // defaultTiming: false,
+        // slideNumber: "c/t",
 
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
