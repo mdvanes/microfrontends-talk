@@ -71,18 +71,10 @@
 
         <section data-markdown>
           <textarea data-template data-line-numbers>
-            # TODO
-
-
-* TODO Trinity/triangle: MFEs, MonoRepos, Component Libraries -> Nx
-          </textarea>
-        </section>
-
-        <section data-markdown>
-          <textarea data-template data-line-numbers>
-            Why Microfrontends?
+            ## Micro _what_?
 
             Note:
+            - First part also for back-end, last part more for front-end
             - For back-end: what is monolith?
             - Where is the treshold for a monolith?
             - How do you prevent monolith? Solutions?
@@ -90,7 +82,7 @@
             - Front-end: Who is (or has been) at a project with more than 10 devs? More than 50? More than 200?
             - Back-end: How would you apply micro services to the front-end?
             - Micro services vs Micro Frontends
-            - MFEs are: ...
+            - MFEs are: any range of solutions to integrate a collection of smaller frontends into one application (https://mdworld.nl/micro-frontends-in-a-nutshell)
             - MFEs are not new
           </textarea>
         </section>
@@ -138,7 +130,7 @@
             <ul>
               <li>needs special code to inject (404)</li>
               <li>bottom: unsafe (clickjacking, frame-ancestors disabled)</li>
-              <li>isolation (e.g. Angular & React)</li>
+              <li>isolation (e.g. Angular & React, or CSS classes)</li>
               <li>limited responsive design</li>
             </ul>
           </aside>
@@ -155,10 +147,8 @@
             Note:
 
             - TODO How (deployment) monoliths?
-            - TODO Component libraries / shared components -> micro Web Components -> Monorepos
-            - TODO Dependencies (e.g. lodash in diagram) and deduplication
-              - with the shared prop
-              - can spread from (package.)json (see https://github.com/module-federation/module-federation-examples/blob/master/redux-reducer-injection/app2/webpack.config.js)
+            
+            
             - TODO Communication between MFEs. Navigation between. 
             - TODO App State Management (custom communication layer like in first course)
           </textarea>
@@ -166,21 +156,20 @@
 
         <section data-background-color="#fefefe" data-markdown>
           <textarea data-template data-line-numbers>
-            ![](assets/web-components.svg)
+            ![Web Components Diagram](assets/web-components.svg)
             
             Note:
             - Micro vs Macro Web Components
             - Angular Elements
             - Shadow DOM
-            - Resource duplication
+            - Resource duplication (e.g. lodash in diagram)
         </textarea
           >
         </section>
 
         <section data-background-color="#fefefe" data-markdown>
-          <img src="assets/hyperlinks-and-monolith.svg" />
           <textarea data-template data-line-numbers>
-            ![](assets/hyperlinks-and-monolith.svg)
+            ![Hyperlinks and Monolith diagram](assets/hyperlinks-and-monolith.svg)
             
             Note:
             - MFE types can and will be combined!
@@ -250,6 +239,9 @@
               <li>Can contain multiple FE/BE apps</li>
               <li>DX: don't have to link component library</li>
               <li>DX: less toolchain maintenance (lint/jest)</li>
+              <li>Disadvantages:</li>
+              <li>Can be slow when misconfigured (also see Affected)</li>
+              <li>Access control for teams between sub projects must be done by only allowing MRs</li>
             </ul>
           </aside>
         </section>
@@ -260,7 +252,7 @@
 
           Note:
 
-          - TODO needs Nx Logo
+          - And CLI/scaffolding
       </textarea
           >
         </section>
@@ -280,7 +272,7 @@
     
               Note:
     
-              - TODO Fallback for when site offline
+              - (This is just a fallback for when site offline)
               - Show that previous slide is live by using button
           </textarea
             >
@@ -355,7 +347,7 @@
     
               Note:
     
-              - TODO Fallback for when site offline
+              - (This is just a fallback for when site offline)
               - Show that previous slide is live by using button
           </textarea
             >
@@ -398,6 +390,8 @@
               - Router
               - path can be used to only load on specic routes
               - In Angular with Router, in React with React.lazy()
+              - MF with everything possible, but with Nx, Angular is easiest
+              - Nx/Angular uses library from Manfred
           </textarea
             >
           </section>
@@ -412,11 +406,6 @@
           </div>
         </section>
 
-        <!-- TODO module federation code example. 
-          Deduplication. Pin versions. 
-          Example of how to use the component 
-          MF with everything possible, but with Nx Ang is easiest
-        -->
         <section data-markdown>
           <textarea data-template data-line-numbers>
             ```ts []
@@ -429,29 +418,59 @@
                 ...deps,
                 "@angular/core": { 
                   singleton: true, 
+                  requiredVersion: '12.2.11',
                   strictVersion: true },
             ...
             ```
 
             Note:
-            - shared for deduplication
+            - shared for deduplication (recall the lodash dep with macro web components)
             - spread from package.json (this way the shell versions are leading)
             - singleton for libs with shared global state
-            - strictVersion: rejects version if not required version
+            - strictVersion: rejects version if not requiredVersion (error, otherwise warning)
           </textarea>
         </section>
 
         <!-- - TODO 
-        - React in Vue https://github.com/module-federation/module-federation-examples/tree/master/react-in-vue
-        - MF adoption is improving. Support in CRA with CRACO https://github.com/module-federation/module-federation-examples/tree/master/cra
+
         - Redux with injectReducer https://github.com/module-federation/module-federation-examples/tree/master/redux-reducer-injection
         - https://github.com/module-federation/module-federation-examples
-        - Angular uses library from Manfred
         - https://blog.nrwl.io/micro-frontends-using-module-federation-presets-for-react-and-storybook-typescript-compiler-4120cf134816 -->
 
         <section data-markdown>
           <textarea data-template data-line-numbers>
+            - React MF with CRA
+            - https://github.com/module-federation/module-federation-examples/tree/master/cra
+
+            Note:
+
+            - MF adoption is improving. Support in CRA with CRACO
+            - With Nx, Angular MF is easiest. This is example with CRA without Nx
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template data-line-numbers>
+            - React in Vue
+            - https://github.com/module-federation/module-federation-examples/blob/master/react-in-vue/layout/src/ReactButton.js
+
+            Note:
+
+            - This example uses React in the Vue shell to mount the component, but this is can be avoided
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template data-line-numbers>
+            - https://github.com/code-star/nx-reference
             - https://mdworld.nl/micro-frontends-in-a-nutshell
+            - https://github.com/module-federation/module-federation-examples
+
+            Note:
+
+            - Nx repo with Module Federation from the examples before
+            - Overview article about Micro Frontends
+            - Plenty of MF examples
           </textarea>
         </section>
       </div>
@@ -472,7 +491,7 @@
         // Disable controls bouncing animation
         controlsTutorial: false,
         // defaultTiming: false,
-        // slideNumber: "c/t",
+        slideNumber: "c/t",
 
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
