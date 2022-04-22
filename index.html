@@ -15,35 +15,39 @@
 
     <!-- Theme used for syntax highlighted code -->
     <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+
+    <style>
+      h1.deck-title {
+        transform: rotate(-2deg);
+        text-shadow: 4px 4px 0 #001a36;
+        font-size: 12rem;
+        margin-bottom: 12rem;
+      }
+
+      .attribution,
+      .attribution a {
+        color: white;
+        font-size: 10px;
+      }
+    </style>
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
-        <section data-markdown>
+        <!-- https://experiencenomad.com/leo-villareal-buckyball-buckminster-fuller-buckyballs/ -->
+
+        <section data-markdown data-background-image="assets/buckyball-nyc.jpg">
           <textarea data-template data-line-numbers>
-            # Micro Frontends
+            # Micro Frontends <!-- .element: class="deck-title" -->
+
+            source: <!-- .element: class="attribution" --> https://experiencenomad.com/leo-villareal-buckyball-buckminster-fuller-buckyballs/
 
             Note:
 
             * 1 hour interactive session
             * brief overview followed by some examples
             * Ask questions!
-            * Assignments
-          </textarea>
-        </section>
-
-        <section data-markdown>
-          <textarea data-template data-line-numbers>
-            # TODO
-
-            * Why?
-            * What MFEs?
-
-            * target audience: from junior to senior, back-end and front-end. React, Angular, Vue.
-* Who is (or has been) at a project with more than 10 devs? More than 50? More than 200?
-* Who is at a project that uses micro services? Why do they use it? (Later: ask to apply micro services to the front-end)
-* MFEs are not new
-* TODO Trinity/triangle: MFEs, MonoRepos, Component Libraries -> Nx
+            * (Assignments)
           </textarea>
         </section>
 
@@ -67,7 +71,27 @@
 
         <section data-markdown>
           <textarea data-template data-line-numbers>
+            # TODO
+
+
+* TODO Trinity/triangle: MFEs, MonoRepos, Component Libraries -> Nx
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template data-line-numbers>
             Why Microfrontends?
+
+            Note:
+            - For back-end: what is monolith?
+            - Where is the treshold for a monolith?
+            - How do you prevent monolith? Solutions?
+            - Who is at a project that uses micro services? Why do they use it? 
+            - Front-end: Who is (or has been) at a project with more than 10 devs? More than 50? More than 200?
+            - Back-end: How would you apply micro services to the front-end?
+            - Micro services vs Micro Frontends
+            - MFEs are: ...
+            - MFEs are not new
           </textarea>
         </section>
 
@@ -417,13 +441,13 @@
           </textarea>
         </section>
 
-        - TODO 
+        <!-- - TODO 
         - React in Vue https://github.com/module-federation/module-federation-examples/tree/master/react-in-vue
         - MF adoption is improving. Support in CRA with CRACO https://github.com/module-federation/module-federation-examples/tree/master/cra
         - Redux with injectReducer https://github.com/module-federation/module-federation-examples/tree/master/redux-reducer-injection
         - https://github.com/module-federation/module-federation-examples
         - Angular uses library from Manfred
-        - https://blog.nrwl.io/micro-frontends-using-module-federation-presets-for-react-and-storybook-typescript-compiler-4120cf134816
+        - https://blog.nrwl.io/micro-frontends-using-module-federation-presets-for-react-and-storybook-typescript-compiler-4120cf134816 -->
 
         <section data-markdown>
           <textarea data-template data-line-numbers>
