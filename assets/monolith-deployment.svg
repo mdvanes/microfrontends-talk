@@ -1,0 +1,233 @@
+<svg version="1.1" baseProfile="full" width="739.3" height="861.0" viewbox="0 0 739.25 861" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+	<desc >#direction: down
+	
+	[MyCheckingAccount|Angular 11 module;Team 5]
+	[MyInvestments|Angular 11 module;Team 6]
+	[Monolith shell|Angular 11 app; Team 4]
+	
+	[MyCheckingAccount]-&gt;[Monolith shell]
+	[MyInvestments]-&gt;[Monolith shell]
+	
+	
+	[&lt;start&gt;start]-&gt;[&lt;state&gt;develop MyCheckingAccount]
+	[&lt;start&gt;start]-&gt;[&lt;state&gt; develop shell | import &quot;@org/my-checking-account&quot;;import &quot;@org/my-investments&quot; ]
+	[&lt;state&gt;develop MyCheckingAccount]-&gt;[CI module]
+	[CI module|E2E test;build]-&gt;publish[&lt;database&gt;npm registry]
+	
+	[&lt;database&gt;npm registry]-&gt;[&lt;state&gt;develop shell]
+	[&lt;state&gt;develop shell]-&gt;[CI|SIT;build]
+	[CI]-&gt;[deployment monolith|&quot;app&quot; assets]
+	[deployment monolith]-&gt;deploy[static hosting]
+	
+	
+	
+	
+	</desc>
+	<g stroke-width="1.0" text-align="left" font="12pt Helvetica, Arial, sans-serif" font-size="12pt" font-family="Helvetica" font-weight="bold" font-style="normal">
+		<g transform="translate(0.5, 0.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round" stroke="#33322E">
+			<g stroke="transparent" fill="transparent">
+				<rect x="0.0" y="0.0" height="861.0" width="739.3" stroke="none"></rect>
+			</g>
+			<g transform="translate(8, 8)" fill="#33322E">
+				<g transform="translate(20, 20)" fill="#33322E" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal">
+					<path d="M87.0 77.0 L87 97 L119.98474035593274 116.15242988408997 L120.0 116.2 " fill="none"></path>
+					<path d="M111.5 117.4 L120.0 116.2 L116.9 108.2 L125.8 119.5 Z"></path>
+					<path d="M288.5 77.0 L288.5 97 L255.51525964406727 116.15242988408997 L255.5 116.2 " fill="none"></path>
+					<path d="M258.6 108.2 L255.5 116.2 L264.0 117.4 L249.8 119.5 Z"></path>
+					<path d="M499.0 49.5 L563.75 97 L563.75 133.33333333333334 L563.8 133.3 " fill="none"></path>
+					<path d="M558.4 126.7 L563.8 133.3 L569.1 126.7 L563.8 140.0 Z"></path>
+					<path d="M469.0 49.5 L404.25 97 L404.25 155.5 L404.25 155.5 L404.25 214 L404.25 214 L404.25 272.5 L404.25 272.5 L404.25 331 L404.25 331 L404.25 374.5 L404.25 374.5 L404.25 418 L404.25 418 L426.13945973716494 434.05684507365703 L426.1 434.1 " fill="none"></path>
+					<path d="M417.6 434.4 L426.1 434.1 L423.9 425.8 L431.5 438.0 Z"></path>
+					<path d="M563.8 171.0 L563.75 214 L563.75 227.33333333333334 L563.8 227.3 " fill="none"></path>
+					<path d="M558.4 220.7 L563.8 227.3 L569.1 220.7 L563.8 234.0 Z"></path>
+					<text x="498.9" y="343.0" stroke="none">publish</text>
+					<path d="M563.8 311.0 L563.75 331 L563.75 344.3333333333333 L563.8 344.3 " fill="none"></path>
+					<path d="M558.4 337.7 L563.8 344.3 L569.1 337.7 L563.8 351.0 Z"></path>
+					<path d="M563.8 398.0 L563.75 418 L541.8605402628351 434.05684507365703 L541.9 434.1 " fill="none"></path>
+					<path d="M544.1 425.8 L541.9 434.1 L550.4 434.4 L536.5 438.0 Z"></path>
+					<path d="M484.0 515.0 L484 535 L484 548.3333333333334 L484.0 548.3 " fill="none"></path>
+					<path d="M478.7 541.7 L484.0 548.3 L489.3 541.7 L484.0 555.0 Z"></path>
+					<path d="M484.0 632.0 L484 652 L484 665.3333333333334 L484.0 665.3 " fill="none"></path>
+					<path d="M478.7 658.7 L484.0 665.3 L489.3 658.7 L484.0 672.0 Z"></path>
+					<text x="424.4" y="766.0" stroke="none">deploy</text>
+					<path d="M484.0 734.0 L484 754 L484 767.3333333333334 L484.0 767.3 " fill="none"></path>
+					<path d="M478.7 760.7 L484.0 767.3 L489.3 760.7 L484.0 774.0 Z"></path>
+					<g data-name="MyCheckingAccount">
+						<g fill="#eee8d5" stroke="#33322E" data-name="MyCheckingAccount">
+							<rect x="0.0" y="0.0" height="77.0" width="174.0" data-name="MyCheckingAccount"></rect>
+							<path d="M0.0 31.0 L174.0 31.0" fill="none" data-name="MyCheckingAccount"></path>
+						</g>
+						<g transform="translate(0, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="MyCheckingAccount">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="MyCheckingAccount">
+								<text x="79.0" y="13.5" stroke="none" text-anchor="middle" data-name="MyCheckingAccount">MyCheckingAccount</text>
+								
+							</g>
+						</g>
+						<g transform="translate(0, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MyCheckingAccount">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="MyCheckingAccount">
+								<text x="0.0" y="13.5" stroke="none" data-name="MyCheckingAccount">Angular 11 module</text>
+								<text x="0.0" y="28.5" stroke="none" data-name="MyCheckingAccount">Team 5</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="MyInvestments">
+						<g fill="#eee8d5" stroke="#33322E" data-name="MyInvestments">
+							<rect x="214.0" y="0.0" height="77.0" width="149.0" data-name="MyInvestments"></rect>
+							<path d="M214.0 31.0 L363.0 31.0" fill="none" data-name="MyInvestments"></path>
+						</g>
+						<g transform="translate(214, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="MyInvestments">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="MyInvestments">
+								<text x="66.5" y="13.5" stroke="none" text-anchor="middle" data-name="MyInvestments">MyInvestments</text>
+								
+							</g>
+						</g>
+						<g transform="translate(214, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MyInvestments">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="MyInvestments">
+								<text x="0.0" y="13.5" stroke="none" data-name="MyInvestments">Angular 11 module</text>
+								<text x="0.0" y="28.5" stroke="none" data-name="MyInvestments">Team 6</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Monolith shell">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Monolith shell">
+							<rect x="126.0" y="117.0" height="77.0" width="124.0" data-name="Monolith shell"></rect>
+							<path d="M126.0 148.0 L250.0 148.0" fill="none" data-name="Monolith shell"></path>
+						</g>
+						<g transform="translate(126, 117)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Monolith shell">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Monolith shell">
+								<text x="54.0" y="13.5" stroke="none" text-anchor="middle" data-name="Monolith shell">Monolith shell</text>
+								
+							</g>
+						</g>
+						<g transform="translate(126, 148)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Monolith shell">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Monolith shell">
+								<text x="0.0" y="13.5" stroke="none" data-name="Monolith shell">Angular 11 app</text>
+								<text x="0.0" y="28.5" stroke="none" data-name="Monolith shell">Team 4</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="develop shell">
+						<g fill="#eee8d5" stroke="#33322E" data-name="develop shell">
+							<rect x="349.0" y="438.0" rx="20.0" ry="20.0" height="77.0" width="271.0" data-name="develop shell"></rect>
+							<path d="M349.0 469.0 L620.0 469.0" fill="none" data-name="develop shell"></path>
+						</g>
+						<g transform="translate(349, 438)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="develop shell">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="develop shell">
+								<text x="127.5" y="13.5" stroke="none" text-anchor="middle" data-name="develop shell">develop shell</text>
+								
+							</g>
+						</g>
+						<g transform="translate(349, 469)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="develop shell">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="develop shell">
+								<text x="0.0" y="13.5" stroke="none" data-name="develop shell">import &quot;@org/my-checking-account&quot;</text>
+								<text x="0.0" y="28.5" stroke="none" data-name="develop shell">import &quot;@org/my-investments&quot;</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="CI module">
+						<g fill="#eee8d5" stroke="#33322E" data-name="CI module">
+							<rect x="517.0" y="234.0" height="77.0" width="93.0" data-name="CI module"></rect>
+							<path d="M517.0 265.0 L610.0 265.0" fill="none" data-name="CI module"></path>
+						</g>
+						<g transform="translate(517, 234)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CI module">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="CI module">
+								<text x="38.5" y="13.5" stroke="none" text-anchor="middle" data-name="CI module">CI module</text>
+								
+							</g>
+						</g>
+						<g transform="translate(517, 265)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CI module">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CI module">
+								<text x="0.0" y="13.5" stroke="none" data-name="CI module">E2E test</text>
+								<text x="0.0" y="28.5" stroke="none" data-name="CI module">build</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="CI">
+						<g fill="#eee8d5" stroke="#33322E" data-name="CI">
+							<rect x="459.0" y="555.0" height="77.0" width="50.0" data-name="CI"></rect>
+							<path d="M459.0 586.0 L509.0 586.0" fill="none" data-name="CI"></path>
+						</g>
+						<g transform="translate(459, 555)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CI">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="CI">
+								<text x="17.0" y="13.5" stroke="none" text-anchor="middle" data-name="CI">CI</text>
+								
+							</g>
+						</g>
+						<g transform="translate(459, 586)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CI">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CI">
+								<text x="0.0" y="13.5" stroke="none" data-name="CI">SIT</text>
+								<text x="0.0" y="28.5" stroke="none" data-name="CI">build</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="deployment monolith">
+						<g fill="#eee8d5" stroke="#33322E" data-name="deployment monolith">
+							<rect x="395.0" y="672.0" height="62.0" width="178.0" data-name="deployment monolith"></rect>
+							<path d="M395.0 703.0 L573.0 703.0" fill="none" data-name="deployment monolith"></path>
+						</g>
+						<g transform="translate(395, 672)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="deployment monolith">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="deployment monolith">
+								<text x="81.0" y="13.5" stroke="none" text-anchor="middle" data-name="deployment monolith">deployment monolith</text>
+								
+							</g>
+						</g>
+						<g transform="translate(395, 703)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="deployment monolith">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="deployment monolith">
+								<text x="0.0" y="13.5" stroke="none" data-name="deployment monolith">&quot;app&quot; assets</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="start">
+						<g fill="#33322E" stroke="#33322E" data-name="start">
+							<circle r="12.0" cx="484.0" cy="39.0" stroke="none" data-name="start"></circle>
+						</g>
+					</g>
+					<g data-name="develop MyCheckingAccount">
+						<g fill="#eee8d5" stroke="#33322E" data-name="develop MyCheckingAccount">
+							<rect x="444.0" y="140.0" rx="15.5" ry="15.5" height="31.0" width="239.0" data-name="develop MyCheckingAccount"></rect>
+						</g>
+						<g transform="translate(444, 140)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="develop MyCheckingAccount">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="develop MyCheckingAccount">
+								<text x="111.5" y="13.5" stroke="none" text-anchor="middle" data-name="develop MyCheckingAccount">develop MyCheckingAccount</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="npm registry">
+						<g fill="#eee8d5" stroke="#33322E" data-name="npm registry">
+							<rect x="507.0" y="359.0" height="35.0" width="113.0" stroke="none" data-name="npm registry"></rect>
+							<path d="M507.0 359.0 L507.0 390.0" fill="none" data-name="npm registry"></path>
+							<path d="M620.0 359.0 L620.0 390.0" fill="none" data-name="npm registry"></path>
+							<ellipse cx="563.8" cy="359.0" rx="56.5" ry="6.0" data-name="npm registry"></ellipse>
+							<path d="M620.3 390.0 L620.2 390.3 L620.0 390.6 L619.6 390.9 L619.1 391.2 L618.5 391.5 L617.7 391.8 L616.8 392.1 L615.8 392.3 L614.7 392.6 L613.4 392.9 L612.0 393.1 L610.4 393.4 L608.8 393.6 L607.0 393.9 L605.2 394.1 L603.2 394.3 L601.1 394.5 L599.0 394.7 L596.7 394.9 L594.4 395.0 L592.0 395.2 L589.5 395.3 L587.0 395.5 L584.4 395.6 L581.7 395.7 L579.1 395.8 L576.3 395.8 L573.6 395.9 L570.8 396.0 L568.0 396.0 L565.2 396.0 L562.3 396.0 L559.5 396.0 L556.7 396.0 L553.9 395.9 L551.2 395.8 L548.4 395.8 L545.8 395.7 L543.1 395.6 L540.5 395.5 L538.0 395.3 L535.5 395.2 L533.1 395.0 L530.8 394.9 L528.5 394.7 L526.4 394.5 L524.3 394.3 L522.3 394.1 L520.5 393.9 L518.7 393.6 L517.1 393.4 L515.5 393.1 L514.1 392.9 L512.8 392.6 L511.7 392.3 L510.7 392.1 L509.8 391.8 L509.0 391.5 L508.4 391.2 L507.9 390.9 L507.5 390.6 L507.3 390.3 L507.3 390.0" data-name="npm registry"></path>
+						</g>
+						<g transform="translate(507, 363)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="npm registry">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="npm registry">
+								<text x="48.5" y="13.5" stroke="none" text-anchor="middle" data-name="npm registry">npm registry</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="static hosting">
+						<g fill="#eee8d5" stroke="#33322E" data-name="static hosting">
+							<rect x="424.0" y="774.0" height="31.0" width="120.0" data-name="static hosting"></rect>
+						</g>
+						<g transform="translate(424, 774)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="static hosting">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="static hosting">
+								<text x="52.0" y="13.5" stroke="none" text-anchor="middle" data-name="static hosting">static hosting</text>
+								
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</svg>

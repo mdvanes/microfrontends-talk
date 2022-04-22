@@ -136,18 +136,29 @@
           </aside>
         </section>
 
-        <section data-markdown>
+        <section data-background-color="#fefefe" data-markdown>
           <textarea data-template data-line-numbers>
-            - hyperlinks
-            - iframes
-            - deployment monolith
-            - Web Components
-            - Module Federation
-
+            ![Hyperlinks and Monolith diagram](assets/hyperlinks-and-monolith.svg)
+            
             Note:
+            - MFE types can and will be combined!
+        </textarea
+          >
+        </section>
 
-            - TODO How (deployment) monoliths?
-          </textarea>
+        
+
+        <section data-background-color="#fdf6e3" data-markdown>
+          <textarea data-template data-line-numbers>
+            ![Monolith Deployment Diagram](assets/monolith-deployment.drawio.svg)
+            
+            Note:
+            - How (deployment) monoliths?
+            - Example, can be done in many ways
+            - Without registry (bash scripts, mono repo)
+            - Clear defined responsibilities (testing, pipelines)
+        </textarea
+          >
         </section>
 
         <section data-background-color="#fefefe" data-markdown>
@@ -163,18 +174,22 @@
           >
         </section>
 
-        <section data-background-color="#fefefe" data-markdown>
-          <textarea data-template data-line-numbers>
-            ![Hyperlinks and Monolith diagram](assets/hyperlinks-and-monolith.svg)
-            
-            Note:
-            - MFE types can and will be combined!
-        </textarea
-          >
-        </section>
-
         <section data-background-color="#fefefe">
           <img src="assets/module-federation.svg" />
+        </section>
+
+        <section data-markdown>
+          <textarea data-template data-line-numbers>
+            - hyperlinks
+            - iframes
+            - deployment monolith
+            - Web Components
+            - Module Federation
+
+            Note:
+
+            - TODO How (deployment) monoliths?
+          </textarea>
         </section>
 
         <section
@@ -536,7 +551,7 @@
             - Redux with injectReducer https://github.com/module-federation/module-federation-examples/tree/master/redux-reducer-injection
             <!--
               TODO 
-              - https://blog.nrwl.io/micro-frontends-using-module-federation-presets-for-react-and-storybook-typescript-compiler-4120cf134816 -->
+              - DONE: Nx: MF for Angular AND SEPARATE TO THAT presets for React (so not MF!!) https://blog.nrwl.io/micro-frontends-using-module-federation-presets-for-react-and-storybook-typescript-compiler-4120cf134816 -->
           </textarea>
         </section>
       </div>
