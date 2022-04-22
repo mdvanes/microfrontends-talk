@@ -147,10 +147,6 @@
             Note:
 
             - TODO How (deployment) monoliths?
-            
-            
-            - TODO Communication between MFEs. Navigation between. 
-            - TODO App State Management (custom communication layer like in first course)
           </textarea>
         </section>
 
@@ -208,7 +204,7 @@
           Note:
           - you don't want iframes
           - instead of "Webpack 5?" you can also read "I want to deduplicate shared resources and to have easier navigation/state integration"
-          - Webpack alternatives (Rollup, Vite, esbuild), no MF support (for now)
+          - Webpack alternatives (Rollup, Vite, esbuild), check MF support - Vite does! https://github.com/module-federation/module-federation-examples/blob/master/vite-react-simple/vite-react/vite.config.ts
       </textarea
           >
         </section>
@@ -242,7 +238,10 @@
               <li>DX: less toolchain maintenance (lint/jest)</li>
               <li>Disadvantages:</li>
               <li>Can be slow when misconfigured (also see Affected)</li>
-              <li>Access control for teams between sub projects must be done by only allowing MRs</li>
+              <li>
+                Access control for teams between sub projects must be done by
+                only allowing MRs
+              </li>
             </ul>
           </aside>
         </section>
@@ -456,12 +455,6 @@
           </textarea>
         </section>
 
-        <!-- - TODO 
-
-        - Redux with injectReducer https://github.com/module-federation/module-federation-examples/tree/master/redux-reducer-injection
-        - https://github.com/module-federation/module-federation-examples
-        - https://blog.nrwl.io/micro-frontends-using-module-federation-presets-for-react-and-storybook-typescript-compiler-4120cf134816 -->
-
         <section data-markdown>
           <textarea data-template data-line-numbers>
             - React MF with CRA
@@ -479,6 +472,44 @@
 
         <section data-markdown>
           <textarea data-template data-line-numbers>
+            ```
+            // app-01/src/pages/svelte-page.jsx
+            import loadApp from 'app_04/loadApp';
+            ...
+            if (mountEl.current.innerHTML.length === 0) {
+              loadApp('app_04', name);
+            }
+
+            // app-01/webpack.config.js
+            app_04: 'app_04@http://localhost:3004/remoteEntry.js',
+
+            // app-04/webpack.config.js
+            exposes: {
+              './App': './src/main.js',
+              './loadApp': './src/loadApp.js',
+            },
+
+            // app-04/src/loadApp
+            const loadApp = (id, name) => {
+              return new App({
+                target: document.querySelector(`#${id}`),
+                props: { name },
+              });
+            };
+            ```
+
+            Note:
+
+            - Svelte and Lit in React
+            - https://github.com/module-federation/module-federation-examples/blob/master/comprehensive-demo/app-01/src/pages/svelte-page.jsx
+            - mountEl + loadApp
+            - loadApp could be expanded to have callbacks to handle navigation/app state synchronisation!
+            - it is possible to always add this intermediate layer, but when host & remote both React, not needed.
+          </textarea>
+        </section>
+
+        <!-- <section data-markdown>
+          <textarea data-template data-line-numbers>             
             - React in Vue
             - https://github.com/module-federation/module-federation-examples/blob/master/react-in-vue/layout/src/ReactButton.js
 
@@ -486,7 +517,7 @@
 
             - This example uses React in the Vue shell to mount the component, but this is can be avoided
           </textarea>
-        </section>
+        </section> -->
 
         <section data-markdown>
           <textarea data-template data-line-numbers>
@@ -499,6 +530,13 @@
             - Nx repo with Module Federation from the examples before
             - Overview article about Micro Frontends
             - Plenty of MF examples
+            - Bi-directional (shell includes remote, remote includes from shell)
+            - Nested navigation / routing
+            - shared-context (React)
+            - Redux with injectReducer https://github.com/module-federation/module-federation-examples/tree/master/redux-reducer-injection
+            <!--
+              TODO 
+              - https://blog.nrwl.io/micro-frontends-using-module-federation-presets-for-react-and-storybook-typescript-compiler-4120cf134816 -->
           </textarea>
         </section>
       </div>
@@ -519,7 +557,7 @@
         // Disable controls bouncing animation
         controlsTutorial: false,
         // defaultTiming: false,
-        slideNumber: "c/t",
+        // slideNumber: "c/t",
 
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
