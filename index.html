@@ -208,6 +208,7 @@
           Note:
           - you don't want iframes
           - instead of "Webpack 5?" you can also read "I want to deduplicate shared resources and to have easier navigation/state integration"
+          - Webpack alternatives (Rollup, Vite, esbuild), no MF support (for now)
       </textarea
           >
         </section>
@@ -305,6 +306,30 @@
           </textarea
             >
           </section>
+
+          <section data-markdown>
+            <textarea data-template data-line-numbers>
+              ```ts []
+              // src/index.ts
+              import('./bootstrap'); // Async!
+              // src/bootstrap.js
+              ...
+              ReactDOM.render(<App/>, document.getElementById('root'));
+
+              // or for Angular in main.ts
+              import { platformBrowserDynamic } from 
+                '@angular/platform-browser-dynamic';
+              platformBrowserDynamic().bootstrapModule(AppModule)
+              ```
+
+              Note:
+              - Segue to explain bootstrap.js
+              - You will most of the time see such a bootstrapping "layer"
+              - async boundary for Webpack to produce a chunk that can be consumed with module federation
+          </textarea
+            >
+          </section>
+
           <section data-markdown>
             <textarea data-template data-line-numbers>
               ```ts []
@@ -440,12 +465,15 @@
         <section data-markdown>
           <textarea data-template data-line-numbers>
             - React MF with CRA
-            - https://github.com/module-federation/module-federation-examples/tree/master/cra
+            - https://github.com/module-federation/module-federation-examples/blob/master/cra/host/modulefederation.config.js
+            - https://github.com/module-federation/module-federation-examples/blob/master/cra/host/src/App.js
 
             Note:
 
             - MF adoption is improving. Support in CRA with CRACO
             - With Nx, Angular MF is easiest. This is example with CRA without Nx
+            - Lerna + CRA + CRACO
+            - craco-module-federation plugin
           </textarea>
         </section>
 
