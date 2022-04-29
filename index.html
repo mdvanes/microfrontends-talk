@@ -74,7 +74,7 @@
             Note:
             - First part also for back-end, last part more for front-end
             - For back-end: what is monolith?
-            - Where is the treshold for a monolith?
+            - Where is the threshold for a monolith?
             - How do you prevent monolith? Solutions?
             - Who is at a project that uses micro services? Why do they use it? 
             - Front-end: Who is (or has been) at a project with more than 10 devs? More than 50? More than 200?
@@ -104,6 +104,7 @@
 
             * code is duplicated
             * visible reloads when navigating
+            * no communication between micro apps
           </textarea>
         </section>
 
@@ -152,7 +153,7 @@
             - How (deployment) monoliths?
             - Example, can be done in many ways
             - Without registry (bash scripts, mono repo)
-            - Clear defined responsibilities (testing, pipelines)
+            - Clearly defined responsibilities (testing, pipelines)
         </textarea
           >
         </section>
@@ -170,8 +171,14 @@
           >
         </section>
 
-        <section data-background-color="#fefefe">
-          <img src="assets/module-federation.svg" />
+        <section data-background-color="#fefefe" data-markdown>
+          <textarea data-template data-line-numbers>
+            ![Module Federation Diagram](assets/module-federation.svg)
+            
+            Note:
+            - Disadvantages are mentioned later in Demo slides (needs "webpack 5", immature libs, requires abstraction layer)
+        </textarea
+          >
         </section>
 
         <section data-markdown>
@@ -182,9 +189,6 @@
             - Web Components
             - Module Federation
 
-            Note:
-
-            - TODO How (deployment) monoliths?
           </textarea>
         </section>
 
@@ -546,7 +550,6 @@
             - shared-context (React)
             - Redux with injectReducer https://github.com/module-federation/module-federation-examples/tree/master/redux-reducer-injection
             <!--
-              TODO 
               - DONE: Nx: MF for Angular AND SEPARATE TO THAT presets for React (so not MF!!) https://blog.nrwl.io/micro-frontends-using-module-federation-presets-for-react-and-storybook-typescript-compiler-4120cf134816 -->
           </textarea>
         </section>
